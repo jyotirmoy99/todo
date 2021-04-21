@@ -7,19 +7,14 @@ function Form1(props) {
   const handleNext = () => {
     let users = []; //create new array
     let usersData = JSON.parse(localStorage.getItem("user"));
+    let obj = {}; //create new object
+    obj["name"] = user.name;
+    obj["age"] = user.age;
+    obj["gender"] = user.gender;
+    usersData.push(obj);
     if (usersData === null) {
-      let obj = {}; //create new object
-      obj["name"] = user.name;
-      obj["age"] = user.age;
-      obj["gender"] = user.gender;
-      users.push(obj); //push the object to the array
       localStorage.setItem("user", JSON.stringify(users));
     } else {
-      let obj = {}; //create new object
-      obj["name"] = user.name;
-      obj["age"] = user.age;
-      obj["gender"] = user.gender;
-      usersData.push(obj);
       localStorage.setItem("user", JSON.stringify(usersData));
     }
 

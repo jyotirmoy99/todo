@@ -30,7 +30,7 @@ function Form2(props) {
       localStorage.setItem("user", JSON.stringify(newUser));
     } else {
       usersData.push(Object.assign({}, ...user));
-      usersData.splice(usersData.length, -2, 1);
+      usersData.splice(usersData.length - 2, 1);
       localStorage.setItem("user", JSON.stringify(usersData));
     }
     alert("DATA SAVED", props.history.push("/view")); //save the data and redirect it to the next page
