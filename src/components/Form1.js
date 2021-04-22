@@ -4,22 +4,45 @@ function Form1(props) {
   const [user, setUser] = useState({ name: "", age: "", gender: "" });
 
   //save to localStorage
+  // const handleNext = () => {
+  //   let users = []; //create new array
+  //   let usersData = JSON.parse(localStorage.getItem("user"));
+  //   let obj = {}; //create new object
+  //   obj["name"] = user.name;
+  //   obj["age"] = user.age;
+  //   obj["gender"] = user.gender;
+  //   usersData.push(obj);
+  //   if (usersData === null) {
+  //     localStorage.setItem("user", JSON.stringify(users));
+  //   } else {
+  //     localStorage.setItem("user", JSON.stringify(usersData));
+  //   }
+
+  //   // usersData.push(obj);
+  //   // localStorage.setItem("user", JSON.stringify(usersData));
+  //   props.history.push("/form2");
+  // };
+
+  //save to localStorage
   const handleNext = () => {
-    let users = []; //create new array
+    let users = [];
     let usersData = JSON.parse(localStorage.getItem("user"));
-    let obj = {}; //create new object
-    obj["name"] = user.name;
-    obj["age"] = user.age;
-    obj["gender"] = user.gender;
-    usersData.push(obj);
     if (usersData === null) {
+      let obj = {};
+      obj["name"] = user.name;
+      obj["age"] = user.age;
+      obj["gender"] = user.gender;
+      users.push(obj);
       localStorage.setItem("user", JSON.stringify(users));
     } else {
+      let obj = {};
+      obj["name"] = user.name;
+      obj["age"] = user.age;
+      obj["gender"] = user.gender;
+      usersData.push(obj);
       localStorage.setItem("user", JSON.stringify(usersData));
     }
 
-    // usersData.push(obj);
-    // localStorage.setItem("user", JSON.stringify(usersData));
     props.history.push("/form2");
   };
 

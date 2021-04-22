@@ -7,8 +7,6 @@ function Form2(props) {
     city: "",
   });
 
-  //   const [viewUser, setViewUser] = useState([]);
-
   //previous function
   const handlePrev = () => {
     props.history.push("/");
@@ -22,14 +20,14 @@ function Form2(props) {
     obj["education"] = user.education;
     obj["profession"] = user.profession;
     obj["city"] = user.city;
-    users.push(...usersData, obj);
+    users.push(...usersData, obj); //push the new object with the previous object
 
     if (usersData.length === 1) {
       let newUser = []; //new  array created for saving the concatination of two objects
       newUser.push(Object.assign({}, ...users)); //concat the users array and push it to the newUser array
       localStorage.setItem("user", JSON.stringify(newUser));
     } else {
-      usersData.push(Object.assign({}, ...user));
+      usersData.push(Object.assign({}, ...users));
       usersData.splice(usersData.length - 2, 1);
       localStorage.setItem("user", JSON.stringify(usersData));
     }

@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Form1 from "./components/Form1";
 import Form2 from "./components/Form2";
 import FormOutput from "./components/FormOutput";
+import NewForm from "./components/NewForm";
 function Routes() {
   return (
     <div>
@@ -22,6 +23,11 @@ function Routes() {
             exact={true}
             path="/view"
             render={(e, props) => <FormOutput {...e} data={props} />}
+          />
+          <Route
+            exact={true}
+            path="/form_update"
+            render={(e, props) => <NewForm {...e} data={props} />}
           />
         </Switch>
       </BrowserRouter>
