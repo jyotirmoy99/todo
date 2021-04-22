@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
 
 function NewForm(props) {
   const [output, setOutput] = useState([]);
+  // const [formData, setFormData] = useState({});
+
+  // const { userID } = useParams();
 
   useEffect(() => {
     getUser();
   }, [output]);
 
   // useEffect(() => {
-  //   const id = props.match.params.id;
-  //   setOutput(id);
-  //   console.log(id);
-  // }, [output]);
+  //   setFormData(userID);
+  // }, [userID]);
 
   const getUser = () => {
     setOutput(JSON.parse(localStorage.getItem("user")));
@@ -29,9 +31,9 @@ function NewForm(props) {
     <div>
       <h3>Update Form</h3>
       <form>
-        {output.map((value) => {
+        {output.map((value, index) => {
           return (
-            <div>
+            <div key={index}>
               <input
                 type="text"
                 placeholder="name"

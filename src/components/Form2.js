@@ -31,7 +31,7 @@ function Form2(props) {
       usersData.splice(usersData.length - 2, 1);
       localStorage.setItem("user", JSON.stringify(usersData));
     }
-    alert("DATA SAVED", props.history.push("/view")); //save the data and redirect it to the next page
+    alert("DATA SAVED", props.history.push("/show")); //save the data and redirect it to the next page
   };
 
   return (
