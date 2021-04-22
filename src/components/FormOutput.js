@@ -25,7 +25,9 @@ function FormOutput(props) {
   };
 
   //UPDATE USER
-  const editUser = () => {
+  const editUser = (id) => {
+    console.log(id);
+    setOutput(output.userID);
     props.history.push("/form_update");
   };
   return (
@@ -54,7 +56,7 @@ function FormOutput(props) {
                 <td>{value.profession}</td>
                 <td>{value.city}</td>
                 <td>
-                  <button onClick={() => editUser(index)}>Edit</button>
+                  <button onClick={() => editUser(value.userID)}>Edit</button>
                   <button onClick={() => deleteUser(index)}>Delete</button>
                 </td>
               </tr>

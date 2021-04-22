@@ -1,27 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Form1(props) {
-  const [user, setUser] = useState({ name: "", age: "", gender: "" });
+  const [user, setUser] = useState({
+    name: "",
+    age: "",
+    gender: "",
+  });
 
-  //save to localStorage
-  // const handleNext = () => {
-  //   let users = []; //create new array
-  //   let usersData = JSON.parse(localStorage.getItem("user"));
-  //   let obj = {}; //create new object
-  //   obj["name"] = user.name;
-  //   obj["age"] = user.age;
-  //   obj["gender"] = user.gender;
-  //   usersData.push(obj);
-  //   if (usersData === null) {
-  //     localStorage.setItem("user", JSON.stringify(users));
-  //   } else {
-  //     localStorage.setItem("user", JSON.stringify(usersData));
-  //   }
+  const [randomNo, setRandomNo] = useState();
 
-  //   // usersData.push(obj);
-  //   // localStorage.setItem("user", JSON.stringify(usersData));
-  //   props.history.push("/form2");
-  // };
+  //RANDOM NUMBER
+  useEffect(() => {
+    let randomNumber = {
+      id: Math.floor(Math.random() * 100),
+    };
+    setRandomNo(randomNumber);
+  }, []);
 
   //save to localStorage
   const handleNext = () => {
@@ -32,6 +26,7 @@ function Form1(props) {
       obj["name"] = user.name;
       obj["age"] = user.age;
       obj["gender"] = user.gender;
+      obj["userID"] = randomNo.id;
       users.push(obj);
       localStorage.setItem("user", JSON.stringify(users));
     } else {
@@ -39,6 +34,7 @@ function Form1(props) {
       obj["name"] = user.name;
       obj["age"] = user.age;
       obj["gender"] = user.gender;
+      obj["userID"] = randomNo.id;
       usersData.push(obj);
       localStorage.setItem("user", JSON.stringify(usersData));
     }
