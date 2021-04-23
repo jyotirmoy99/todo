@@ -35,9 +35,10 @@ function Form2(props) {
   };
 
   return (
-    <div>
+    <div className="form-group">
       <form>
         <h2>Step 2</h2>
+        <br />
         <br />
         <input
           type="text"
@@ -61,8 +62,12 @@ function Form2(props) {
         />
         <br />
         <br />
-        <button onClick={handlePrev}>Back</button>
-        <button onClick={handleSubmit}>Submit</button>
+        <button className="btn btn-secondary" onClick={handlePrev}>
+          {"<"}
+        </button>
+        <button className="btn btn-primary" onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -4,7 +4,7 @@ import Form1 from "./components/Form1";
 import Form2 from "./components/Form2";
 import FormOutput from "./components/FormOutput";
 import NewForm from "./components/NewForm";
-import ShowList from "./components/ShowList";
+import Table from "./components/Table";
 function Routes() {
   return (
     <div>
@@ -28,14 +28,13 @@ function Routes() {
           <Route
             exact={true}
             path="/show"
-            render={(e, props) => <ShowList {...e} data={props} />}
+            render={(e, props) => <Table {...e} data={props} />}
           />
-          {/* <Route
+          <Route
             exact={true}
             path="/form_update/:id"
             render={(e, props) => <NewForm {...e} data={props} />}
           />
-          */}
         </Switch>
       </BrowserRouter>
     </div>

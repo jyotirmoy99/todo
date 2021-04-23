@@ -44,8 +44,10 @@ function Form1(props) {
 
   return (
     <div>
-      <form>
+      <form className="form-group">
         <h2>Step 1</h2>
+        <br />
+        <br />
         <input
           type="text"
           placeholder="name"
@@ -69,7 +71,7 @@ function Form1(props) {
         />
         <br />
         <br />
-        <button type="submit" onClick={handleNext}>
+        <button className="btn btn-success" type="submit" onClick={handleNext}>
           Next
         </button>
       </form>
