@@ -18,10 +18,10 @@ const customStyles = {
 };
 
 function Table() {
-  const [submitLocalStorage, setSubmitLocalStorage] = useState([]);
-  let [newFormData, setnewFormData] = useState({});
-  const [array, setArray] = useState([]);
-  let [indexID, setindexID] = useState(null);
+  const [submitLocalStorage, setSubmitLocalStorage] = useState([]); //get data from localstorage
+  let [newFormData, setnewFormData] = useState({}); //new form for updating the object
+  const [array, setArray] = useState([]); //it is used to map the new array where the new form data is stored
+  let [indexID, setindexID] = useState(null); //get single id
 
   //modal
   const [isopen, setIsopen] = useState(false);
