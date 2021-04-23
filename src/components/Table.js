@@ -18,52 +18,51 @@ const customStyles = {
 };
 
 function Table() {
-  const [submitteddata, setSubmittedata] = useState([]);
-  let [formdata, setFormdata] = useState({});
-  const [arr, setArr] = useState([]);
-  let [idx, setIdx] = useState(null);
+  const [submitLocalStorage, setSubmitLocalStorage] = useState([]);
+  let [newFormData, setnewFormData] = useState({});
+  const [array, setArray] = useState([]);
+  let [indexID, setindexID] = useState(null);
 
   //modal
   const [isopen, setIsopen] = useState(false);
 
   useEffect(() => {
     getLocalStorageData();
-  }, [submitteddata, idx]);
+  }, [submitLocalStorage]);
 
   const getLocalStorageData = () => {
     let localDB = JSON.parse(localStorage.getItem("user"));
-    setSubmittedata(localDB);
+    setSubmitLocalStorage(localDB);
   };
 
   //DELETE USER
   const deleteUser = (id) => {
-    setSubmittedata(submitteddata.splice(id, 1));
-    localStorage.setItem("user", JSON.stringify(submitteddata));
+    setSubmitLocalStorage(submitLocalStorage.splice(id, 1));
+    localStorage.setItem("user", JSON.stringify(submitLocalStorage));
   };
 
   //UPDATE USER
-  const handleUpdate = (index) => {
+  const handleUpdate = (id) => {
     let data = JSON.parse(localStorage.getItem("user"));
-    data.splice(index, 1, formdata);
+    data.splice(indexID, 1, newFormData);
     localStorage.setItem("user", JSON.stringify(data));
     setIsopen(false);
+    alert("Data successfully Updated");
   };
 
   //EDIT USER
   const handleEdit = (value, index) => {
-    let obj = submitteddata[index];
-    formdata = { ...obj };
-    console.log(formdata);
+    setnewFormData({ ...value });
     setIsopen(true);
-    setIdx(index);
-    arr.splice(0, 1, value);
+    setindexID(index);
+    array.splice(0, 1, value);
   };
 
   return (
     <>
       <div>
         <Link to="/">Home</Link>
-        <h2>User Data</h2>
+        <h2>User Table</h2>
 
         <table className="table">
           <thead>
@@ -78,8 +77,8 @@ function Table() {
             </tr>
           </thead>
           <tbody>
-            {submitteddata.length > 0 ? (
-              submitteddata.map((value, index) => {
+            {submitLocalStorage.length > 0 ? (
+              submitLocalStorage.map((value, index) => {
                 return (
                   <tr key={index}>
                     <td>{value.name}</td>
@@ -116,7 +115,7 @@ function Table() {
         {/* MODAL START */}
         <Modal isOpen={isopen} style={customStyles}>
           <h2 style={{ textAlign: "center" }}>Update</h2>
-          {arr.map((value, index) => {
+          {array.map((value, index) => {
             return (
               <div className="form-group">
                 <form>
@@ -125,7 +124,7 @@ function Table() {
                     className="form-control"
                     defaultValue={value.name}
                     onChange={(e) =>
-                      setFormdata({ ...formdata, name: e.target.value })
+                      setnewFormData({ ...newFormData, name: e.target.value })
                     }
                     placeholder="name"
                   />
@@ -135,7 +134,7 @@ function Table() {
                     className="form-control"
                     defaultValue={value.age}
                     onChange={(e) =>
-                      setFormdata({ ...formdata, age: e.target.value })
+                      setnewFormData({ ...newFormData, age: e.target.value })
                     }
                     placeholder="age"
                   />
@@ -145,7 +144,7 @@ function Table() {
                     className="form-control"
                     defaultValue={value.gender}
                     onChange={(e) =>
-                      setFormdata({ ...formdata, gender: e.target.value })
+                      setnewFormData({ ...newFormData, gender: e.target.value })
                     }
                     placeholder="gender"
                   />
@@ -155,7 +154,10 @@ function Table() {
                     className="form-control"
                     defaultValue={value.education}
                     onChange={(e) =>
-                      setFormdata({ ...formdata, edu: e.target.value })
+                      setnewFormData({
+                        ...newFormData,
+                        education: e.target.value,
+                      })
                     }
                     placeholder="education"
                   />
@@ -165,7 +167,10 @@ function Table() {
                     className="form-control"
                     defaultValue={value.profession}
                     onChange={(e) =>
-                      setFormdata({ ...formdata, prof: e.target.value })
+                      setnewFormData({
+                        ...newFormData,
+                        profession: e.target.value,
+                      })
                     }
                     placeholder="profession"
                   />
@@ -175,23 +180,14 @@ function Table() {
                     className="form-control"
                     defaultValue={value.city}
                     onChange={(e) =>
-                      setFormdata({ ...formdata, city: e.target.value })
+                      setnewFormData({ ...newFormData, city: e.target.value })
                     }
                     placeholder="city"
                   />
                   <br />
-                  <button
-                    className="btn btn-dark"
-                    onClick={() => setIsopen(false)}
-                  >
-                    Close
-                  </button>
                 </form>
                 <br />
-                <button
-                  className="btn btn-info"
-                  OnCLick={() => handleUpdate(index, value)}
-                >
+                <button className="btn btn-info" onClick={() => handleUpdate()}>
                   Update
                 </button>
               </div>
